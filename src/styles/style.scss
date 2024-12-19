@@ -13,3 +13,10 @@ $rose-900: hsl(14, 65%, 9%);
 $font-weight-regular: 400;
 $font-weight-semi-bold: 600;
 $font-weight-bold: 700;
+
+body {
+	font-family: "Red Hat Text", sans-serif;
+	font-weight: $font-weight-semi-bold;
+	font-size: 16px;
+	color: $rose-900;
+}
