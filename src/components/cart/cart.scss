@@ -1,0 +1,25 @@
+@import "../../styles/main.scss";
+
+.cart {
+	margin-top: 24px;
+	background-color: $rose-50;
+	padding: 24px 20px;
+	border-radius: 8px;
+
+	h2 {
+		color: $red;
+		margin-bottom: 48px;
+	}
+
+	.cart-empty-img {
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 24px;
+	}
+
+	.cart-empty-message {
+		text-align: center;
+		font-size: 14px;
+		color: $rose-500;
+	}
+}

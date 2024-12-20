@@ -3,6 +3,7 @@ import "./styles/main.scss";
 
 import { TopBar } from "./components/topBar";
 import { ProductList } from "./components/productList";
+import { Cart } from "./components/cart";
 
 function App() {
 	return (
@@ -11,6 +12,7 @@ function App() {
 
 			<div className="container">
 				<ProductList />
+				<Cart />
 			</div>
 		</>
 	);
