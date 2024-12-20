@@ -1,10 +1,12 @@
 import "./styles/reset.css";
-import "./styles/style.scss";
+import "./styles/main.scss";
+
+import { TopBar } from "./components/topBar";
 
 function App() {
 	return (
 		<>
-			<h1>Hello</h1>
+			<TopBar />
 		</>
 	);
 }

@@ -1,0 +1,30 @@
+@import "../../styles/main.scss";
+
+.top-bar {
+	background-color: $green;
+	color: $rose-100;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+
+	.text-content {
+		position: absolute;
+		width: 40ch;
+		left: 380px;
+		top: 50%;
+		transform: translateY(-50%);
+		animation: MovingText 8s linear infinite;
+	}
+}
+
+@keyframes MovingText {
+	0% {
+		left: 380px;
+	}
+
+	100% {
+		left: -280px;
+	}
+}

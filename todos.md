@@ -3,7 +3,7 @@
 [x] Initialize the repository
 [x] Add style files  
 [x] Import font family
-[] Moving top bar
+[x] Moving top bar
 [] Mobile layout with empty states
 [] Add cart logic
 [] Account logic
