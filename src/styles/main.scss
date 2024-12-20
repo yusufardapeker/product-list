@@ -15,9 +15,16 @@ $font-weight-semi-bold: 600;
 $font-weight-bold: 700;
 
 body {
-	font-family: "Red Hat Text", sans-serif;
+	font-family: "Red Hat Text", serif;
 	font-weight: $font-weight-semi-bold;
 	font-size: 16px;
 	color: $rose-900;
 	background-color: $rose-100;
+}
+
+.container {
+	max-width: 1440px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 }
