@@ -4,8 +4,8 @@
 [x] Add style files  
 [x] Import font family
 [x] Moving top bar
-[] Mobile layout with empty states
-[] Add cart logic
+[x] Mobile layout with empty states
+[x] Add to cart logic
 [] Account logic
 [] Order confirmed logic
 [] Desktop layout

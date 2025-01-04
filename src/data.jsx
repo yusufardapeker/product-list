@@ -43,7 +43,7 @@ import image9Mobile from "./images/image-panna-cotta-mobile.jpg";
 import image9Tablet from "./images/image-panna-cotta-tablet.jpg";
 import image9Desktop from "./images/image-panna-cotta-desktop.jpg";
 
-export const productData = [
+export const data = [
 	{
 		image: {
 			thumbnail: image1Thumbnail,
@@ -54,7 +54,7 @@ export const productData = [
 		name: "Waffle with Berries",
 		category: "Waffle",
 		price: 6.5,
-		amount: 1,
+		quantity: 1,
 	},
 	{
 		image: {
@@ -66,7 +66,7 @@ export const productData = [
 		name: "Vanilla Bean Crème Brûlée",
 		category: "Crème Brûlée",
 		price: 7.0,
-		amount: 1,
+		quantity: 1,
 	},
 	{
 		image: {
@@ -78,7 +78,7 @@ export const productData = [
 		name: "Macaron Mix of Five",
 		category: "Macaron",
 		price: 8.0,
-		amount: 1,
+		quantity: 1,
 	},
 	{
 		image: {
@@ -90,7 +90,7 @@ export const productData = [
 		name: "Classic Tiramisu",
 		category: "Tiramisu",
 		price: 5.5,
-		amount: 1,
+		quantity: 1,
 	},
 	{
 		image: {
@@ -102,7 +102,7 @@ export const productData = [
 		name: "Pistachio Baklava",
 		category: "Baklava",
 		price: 4.0,
-		amount: 1,
+		quantity: 1,
 	},
 	{
 		image: {
@@ -114,7 +114,7 @@ export const productData = [
 		name: "Lemon Meringue Pie",
 		category: "Pie",
 		price: 5.0,
-		amount: 1,
+		quantity: 1,
 	},
 	{
 		image: {
@@ -126,7 +126,7 @@ export const productData = [
 		name: "Red Velvet Cake",
 		category: "Cake",
 		price: 4.5,
-		amount: 1,
+		quantity: 1,
 	},
 	{
 		image: {
@@ -138,7 +138,7 @@ export const productData = [
 		name: "Salted Caramel Brownie",
 		category: "Brownie",
 		price: 4.5,
-		amount: 1,
+		quantity: 1,
 	},
 	{
 		image: {
@@ -150,6 +150,6 @@ export const productData = [
 		name: "Vanilla Panna Cotta",
 		category: "Panna Cotta",
 		price: 6.5,
-		amount: 1,
+		quantity: 1,
 	},
 ];

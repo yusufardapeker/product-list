@@ -1,18 +1,21 @@
 import React from "react";
 import "./cart.scss";
 
-import cartEmptyIcon from "../../images/illustration-empty-cart.svg";
+import { useSelector } from "react-redux";
+import { CartEmpty } from "./components/CartEmpty";
+import { CartFilled } from "./components/CartFilled";
 
 function Cart() {
+	const cartProducts = useSelector((store) => store.products.cartProducts);
+
+	const totalQuantity = cartProducts.reduce((acc, product) => acc + product.quantity, 0);
+
 	return (
 		<div className="cart">
-			<h2>Your Cart (0)</h2>
+			<h2>{`Your Cart (${totalQuantity})`} </h2>
 
 			<div className="cart-content">
-				<div className="cart-empty">
-					<img src={cartEmptyIcon} className="cart-empty-img" />
-					<p className="cart-empty-message">Your added items will appear here</p>
-				</div>
+				{cartProducts.length === 0 ? <CartEmpty /> : <CartFilled />}
 			</div>
 		</div>
 	);

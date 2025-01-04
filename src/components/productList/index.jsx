@@ -1,22 +1,59 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./productlist.scss";
-
-import { productData } from "../../data";
 
 import decrementIcon from "../../images/icon-decrement-quantity.svg";
 import incrementIcon from "../../images/icon-increment-quantity.svg";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	addProductToCart,
+	decrementQuantity,
+	incrementQuantity,
+	removeProductToCart,
+	showQuantityButtons,
+} from "../../store/productSlice";
 
 function ProductList() {
+	const quantityButtons = useRef([]);
+	const products = useSelector((store) => store.products.products);
+	const hideQuantityButtons = useSelector((store) => store.products.hideQuantityButtons);
+	const dispatch = useDispatch();
+
+	const showQuantityBtn = (e, index, product) => {
+		quantityButtons.current.forEach((button) => button.classList.remove("active"));
+		quantityButtons.current[index].classList.add("active");
+
+		dispatch(addProductToCart(product));
+	};
+
+	if (hideQuantityButtons) {
+		quantityButtons.current.forEach((button) => button.classList.remove("active"));
+
+		dispatch(showQuantityButtons());
+	}
+
+	const handleDecrement = (product, index) => {
+		if (product.quantity === 1) {
+			quantityButtons.current[index].classList.remove("active");
+			dispatch(removeProductToCart(product.name));
+		}
+
+		dispatch(decrementQuantity(product.name));
+	};
+
 	return (
 		<div className="product-list">
 			<h1>Desserts</h1>
 
 			<div className="products-wrapper">
-				{productData.map((product, index) => (
+				{products.map((product, index) => (
 					<div className="product" key={index}>
 						<img src={product.image.mobile} className="product-img" />
 
-						<button type="button" className="add-to-cart-btn">
+						<button
+							type="button"
+							className="add-to-cart-btn"
+							onClick={(e) => showQuantityBtn(e, index, product)}
+						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="21"
@@ -37,10 +74,24 @@ function ProductList() {
 							Add to Cart
 						</button>
 
-						<button type="button" className="order-quantity-btn">
-							<img src={decrementIcon} alt="decrement" className="decrement" />
-							{product.amount}
-							<img src={incrementIcon} alt="increment" className="increment" />
+						<button
+							type="button"
+							className="order-quantity-btn"
+							ref={(el) => (quantityButtons.current[index] = el)}
+						>
+							<img
+								src={decrementIcon}
+								alt="decrement icon"
+								className="decrement"
+								onClick={() => handleDecrement(product, index)}
+							/>
+							{product.quantity}
+							<img
+								src={incrementIcon}
+								alt="increment icon"
+								className="increment"
+								onClick={() => dispatch(incrementQuantity(product.name))}
+							/>
 						</button>
 
 						<div className="product-text-content">
