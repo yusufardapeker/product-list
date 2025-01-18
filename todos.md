@@ -6,6 +6,6 @@
 [x] Moving top bar
 [x] Mobile layout with empty states
 [x] Add to cart logic
-[] Account logic
+[x] Register logic
 [] Order confirmed logic
 [] Desktop layout

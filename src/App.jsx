@@ -4,6 +4,7 @@ import "./styles/main.scss";
 import { TopBar } from "./components/topBar";
 import { ProductList } from "./components/productList";
 import { Cart } from "./components/cart";
+import { Register } from "./components/register";
 
 function App() {
 	return (
@@ -11,6 +12,8 @@ function App() {
 			<TopBar />
 
 			<div className="container">
+				<Register />
+
 				<ProductList />
 				<Cart />
 			</div>
