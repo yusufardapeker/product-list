@@ -15,9 +15,15 @@ export const registerSlice = createSlice({
 			const { name, value } = action.payload;
 			state[name] = value;
 		},
+		resetUserData: (state) => {
+			state.name = "";
+			state.surname = "";
+			state.city = "";
+			state.country = "";
+		},
 	},
 });
 
-export const { setUserData } = registerSlice.actions;
+export const { setUserData, resetUserData } = registerSlice.actions;
 
 export default registerSlice.reducer;
