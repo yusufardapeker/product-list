@@ -12,6 +12,8 @@ import {
 	showQuantityButtons,
 } from "../../store/productSlice";
 
+import { formatPrice } from "../../utils/price";
+
 function ProductList() {
 	const quantityButtons = useRef([]);
 	const products = useSelector((store) => store.products.products);
@@ -97,11 +99,7 @@ function ProductList() {
 						<div className="product-text-content">
 							<p className="category">{product.category}</p>
 							<p className="name">{product.name}</p>
-							<span className="price">
-								{product.price.toString().includes(".")
-									? `$${product.price}0`
-									: `$${product.price}.00`}
-							</span>
+							<span className="price">{formatPrice(product.price)}</span>
 						</div>
 					</div>
 				))}
