@@ -5,7 +5,6 @@ import { data } from "../data";
 const initialState = {
 	products: data,
 	cartProducts: [],
-	hideQuantityButtons: false,
 };
 
 export const productSlice = createSlice({
@@ -23,8 +22,6 @@ export const productSlice = createSlice({
 		},
 
 		removeProductToCart: (state, action) => {
-			state.hideQuantityButtons = true;
-
 			state.cartProducts = state.cartProducts.filter((product) => product.name !== action.payload);
 
 			state.products = state.products.map((product) =>
@@ -62,10 +59,6 @@ export const productSlice = createSlice({
 				product.name === action.payload ? { ...product, quantity: product.quantity + 1 } : product
 			);
 		},
-
-		showQuantityButtons: (state, action) => {
-			state.hideQuantityButtons = false;
-		},
 	},
 });
 
@@ -74,7 +67,6 @@ export const {
 	incrementQuantity,
 	addProductToCart,
 	removeProductToCart,
-	showQuantityButtons,
 	resetProductsData,
 } = productSlice.actions;
 

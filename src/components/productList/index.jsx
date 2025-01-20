@@ -9,7 +9,6 @@ import {
 	decrementQuantity,
 	incrementQuantity,
 	removeProductToCart,
-	showQuantityButtons,
 } from "../../store/productSlice";
 
 import { formatPrice } from "../../utils/price";
@@ -17,7 +16,6 @@ import { formatPrice } from "../../utils/price";
 function ProductList() {
 	const quantityButtons = useRef([]);
 	const products = useSelector((store) => store.products.products);
-	const hideQuantityButtons = useSelector((store) => store.products.hideQuantityButtons);
 	const dispatch = useDispatch();
 
 	const showQuantityBtn = (e, index, product) => {
@@ -26,17 +24,10 @@ function ProductList() {
 		dispatch(addProductToCart(product));
 	};
 
-	if (hideQuantityButtons) {
-		quantityButtons.current.forEach((button) =>
-			button.closest(".product").classList.remove("active")
-		);
-
-		dispatch(showQuantityButtons());
-	}
-
 	const handleDecrement = (product, index) => {
 		if (product.quantity === 1) {
 			quantityButtons.current[index].closest(".product").classList.remove("active");
+
 			dispatch(removeProductToCart(product.name));
 		}
 
