@@ -21,7 +21,6 @@ function ProductList() {
 	const dispatch = useDispatch();
 
 	const showQuantityBtn = (e, index, product) => {
-		quantityButtons.current.forEach((button) => button.classList.remove("active"));
 		quantityButtons.current[index].classList.add("active");
 
 		dispatch(addProductToCart(product));
