@@ -7,5 +7,6 @@
 [x] Mobile layout with empty states
 [x] Add to cart logic
 [x] Register logic
-[] Order confirmed logic
+[x] Order confirmed logic
 [] Desktop layout
+[] Last Touches

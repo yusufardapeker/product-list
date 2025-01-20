@@ -89,7 +89,7 @@ function CartFilled() {
 				</div>
 			</div>
 
-			{showModal && <OrderConfirmed />}
+			{showModal && <OrderConfirmed setShowModal={setShowModal} />}
 		</>
 	);
 }

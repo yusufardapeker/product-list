@@ -32,6 +32,12 @@ export const productSlice = createSlice({
 			);
 		},
 
+		resetProductsData: (state) => {
+			state.cartProducts = [];
+
+			state.products = state.products.map((product) => ({ ...product, quantity: 1 }));
+		},
+
 		decrementQuantity: (state, action) => {
 			state.products = state.products.map((product) =>
 				product.name === action.payload
@@ -69,6 +75,7 @@ export const {
 	addProductToCart,
 	removeProductToCart,
 	showQuantityButtons,
+	resetProductsData,
 } = productSlice.actions;
 
 export default productSlice.reducer;
