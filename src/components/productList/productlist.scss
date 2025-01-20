@@ -17,6 +17,14 @@
 			flex-direction: column;
 			gap: 36px;
 
+			&.active .product-img {
+				border: 3px solid $red;
+			}
+
+			&.active .order-quantity-btn {
+				display: flex;
+			}
+
 			.product-img {
 				border-radius: 8px;
 			}
@@ -52,10 +60,6 @@
 				padding: 0 12px;
 				border-radius: 24px;
 				display: none;
-
-				&.active {
-					display: flex;
-				}
 
 				img.decrement {
 					padding: 8px 4px;

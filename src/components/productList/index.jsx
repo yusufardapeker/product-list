@@ -21,20 +21,22 @@ function ProductList() {
 	const dispatch = useDispatch();
 
 	const showQuantityBtn = (e, index, product) => {
-		quantityButtons.current[index].classList.add("active");
+		quantityButtons.current[index].closest(".product").classList.add("active");
 
 		dispatch(addProductToCart(product));
 	};
 
 	if (hideQuantityButtons) {
-		quantityButtons.current.forEach((button) => button.classList.remove("active"));
+		quantityButtons.current.forEach((button) =>
+			button.closest(".product").classList.remove("active")
+		);
 
 		dispatch(showQuantityButtons());
 	}
 
 	const handleDecrement = (product, index) => {
 		if (product.quantity === 1) {
-			quantityButtons.current[index].classList.remove("active");
+			quantityButtons.current[index].closest(".product").classList.remove("active");
 			dispatch(removeProductToCart(product.name));
 		}
 
