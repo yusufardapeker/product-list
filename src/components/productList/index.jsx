@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import "./productlist.scss";
 
 import decrementIcon from "../../images/icon-decrement-quantity.svg";
@@ -14,19 +14,19 @@ import {
 import { formatPrice } from "../../utils/price";
 
 function ProductList() {
-	const quantityButtons = useRef([]);
 	const products = useSelector((store) => store.products.products);
 	const dispatch = useDispatch();
+	const listProducts = document.querySelectorAll(".list-product");
 
 	const showQuantityBtn = (e, index, product) => {
-		quantityButtons.current[index].closest(".product").classList.add("active");
+		listProducts[index].classList.add("active");
 
 		dispatch(addProductToCart(product));
 	};
 
 	const handleDecrement = (product, index) => {
 		if (product.quantity === 1) {
-			quantityButtons.current[index].closest(".product").classList.remove("active");
+			listProducts[index].classList.remove("active");
 
 			dispatch(removeProductToCart(product.name));
 		}
@@ -40,7 +40,7 @@ function ProductList() {
 
 			<div className="products-wrapper">
 				{products.map((product, index) => (
-					<div className="product" key={index}>
+					<div className="list-product" key={index}>
 						<img src={product.image.mobile} className="product-img" />
 
 						<button
@@ -68,11 +68,7 @@ function ProductList() {
 							Add to Cart
 						</button>
 
-						<button
-							type="button"
-							className="order-quantity-btn"
-							ref={(el) => (quantityButtons.current[index] = el)}
-						>
+						<button type="button" className="order-quantity-btn">
 							<img
 								src={decrementIcon}
 								alt="decrement icon"

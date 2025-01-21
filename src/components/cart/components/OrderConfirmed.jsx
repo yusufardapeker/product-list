@@ -8,6 +8,7 @@ function OrderConfirmed({ setShowModal }) {
 	const cartProducts = useSelector((store) => store.products.cartProducts);
 	const userData = useSelector((store) => store.register);
 	const dispatch = useDispatch();
+	const listProducts = document.querySelectorAll(".list-product");
 
 	const finalPrice = cartProducts.reduce(
 		(total, product) => total + product.price * product.quantity,
@@ -20,6 +21,7 @@ function OrderConfirmed({ setShowModal }) {
 	const handleNewOrder = () => {
 		setShowModal(false);
 		dispatch(resetProductsData());
+		listProducts.forEach((product) => product.classList.remove("active"));
 	};
 
 	return (

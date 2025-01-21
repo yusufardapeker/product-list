@@ -15,6 +15,20 @@ function CartFilled() {
 		0
 	);
 
+	const listProducts = document.querySelectorAll(".list-product");
+
+	const handleRemoveProductToCart = (productName) => {
+		dispatch(removeProductToCart(productName));
+
+		listProducts.forEach((product) => {
+			const selectedProductName = product.childNodes[3].childNodes[1].textContent;
+
+			if (productName === selectedProductName) {
+				product.classList.remove("active");
+			}
+		});
+	};
+
 	const [showModal, setShowModal] = useState(false);
 
 	const handleClick = () => {
@@ -50,7 +64,7 @@ function CartFilled() {
 								src={removeIcon}
 								className="remove-icon"
 								alt="remove icon"
-								onClick={() => dispatch(removeProductToCart(product.name))}
+								onClick={() => handleRemoveProductToCart(product.name)}
 							/>
 						</div>
 					))}
