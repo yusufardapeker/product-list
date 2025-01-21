@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./productlist.scss";
 
 import decrementIcon from "../../images/icon-decrement-quantity.svg";
@@ -16,17 +16,18 @@ import { formatPrice } from "../../utils/price";
 function ProductList() {
 	const products = useSelector((store) => store.products.products);
 	const dispatch = useDispatch();
-	const listProducts = document.querySelectorAll(".list-product");
+
+	const listProducts = useRef([]);
 
 	const showQuantityBtn = (e, index, product) => {
-		listProducts[index].classList.add("active");
+		listProducts.current[index].classList.add("active");
 
 		dispatch(addProductToCart(product));
 	};
 
 	const handleDecrement = (product, index) => {
 		if (product.quantity === 1) {
-			listProducts[index].classList.remove("active");
+			listProducts.current[index].classList.remove("active");
 
 			dispatch(removeProductToCart(product.name));
 		}
@@ -40,7 +41,11 @@ function ProductList() {
 
 			<div className="products-wrapper">
 				{products.map((product, index) => (
-					<div className="list-product" key={index}>
+					<div
+						className="list-product"
+						key={index}
+						ref={(el) => (listProducts.current[index] = el)}
+					>
 						<picture>
 							<source
 								media="(min-width: 375px)"
