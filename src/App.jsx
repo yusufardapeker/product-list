@@ -14,8 +14,10 @@ function App() {
 			<div className="container">
 				<Register />
 
-				<ProductList />
-				<Cart />
+				<main>
+					<ProductList />
+					<Cart />
+				</main>
 			</div>
 		</>
 	);

@@ -34,13 +34,13 @@
 				top: 62%;
 				left: 50%;
 				transform: translateX(-50%);
+				width: 160px;
+				height: 40px;
 				background-color: $rose-50;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				gap: 12px;
-				width: 160px;
-				height: 40px;
 				border: 1px solid $rose-300;
 				border-radius: 24px;
 			}
@@ -50,13 +50,13 @@
 				top: 62%;
 				left: 50%;
 				transform: translateX(-50%);
-				color: $rose-100;
+				width: 160px;
+				height: 40px;
 				background-color: $red;
+				color: $rose-100;
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				width: 160px;
-				height: 40px;
 				padding: 0 12px;
 				border-radius: 24px;
 				display: none;
@@ -95,6 +95,30 @@
 
 				.price {
 					color: $red;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 376px) {
+	.product-list {
+		width: 900px;
+		padding-bottom: 24px;
+
+		.products-wrapper {
+			flex-direction: row;
+			flex-wrap: wrap;
+
+			.list-product {
+				width: 280px;
+
+				.add-to-cart-btn {
+					top: 66%;
+				}
+
+				.order-quantity-btn {
+					top: 66%;
 				}
 			}
 		}

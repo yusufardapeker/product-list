@@ -41,7 +41,14 @@ function ProductList() {
 			<div className="products-wrapper">
 				{products.map((product, index) => (
 					<div className="list-product" key={index}>
-						<img src={product.image.mobile} className="product-img" />
+						<picture>
+							<source
+								media="(min-width: 375px)"
+								srcSet={product.image.desktop}
+								className="product-img"
+							/>
+							<img src={product.image.mobile} className="product-img" />
+						</picture>
 
 						<button
 							type="button"

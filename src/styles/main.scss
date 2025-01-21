@@ -42,3 +42,11 @@ body {
 	font-size: 17px;
 	font-weight: $font-weight-regular;
 }
+
+@media (min-width: 376px) {
+	main {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
+}

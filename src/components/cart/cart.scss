@@ -5,6 +5,7 @@
 	background-color: $rose-50;
 	padding: 24px 20px;
 	border-radius: 8px;
+	width: 350px;
 
 	h2 {
 		color: $red;
@@ -236,6 +237,18 @@
 						}
 					}
 				}
+			}
+		}
+	}
+}
+
+@media (min-width: 376px) {
+	.cart {
+		.order-confirmed {
+			.order-info {
+				width: 35%;
+				left: 50%;
+				transform: translateX(-50%);
 			}
 		}
 	}

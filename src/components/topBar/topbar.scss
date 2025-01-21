@@ -29,3 +29,22 @@
 		left: -280px;
 	}
 }
+
+@media (min-width: 376px) {
+	.top-bar {
+		.text-content {
+			left: 1450px;
+			animation: MovingText 12s linear infinite;
+		}
+	}
+
+	@keyframes MovingText {
+		0% {
+			left: 1450px;
+		}
+
+		100% {
+			left: -280px;
+		}
+	}
+}

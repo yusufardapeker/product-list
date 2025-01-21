@@ -8,5 +8,5 @@
 [x] Add to cart logic
 [x] Register logic
 [x] Order confirmed logic
-[] Desktop layout
+[x] Desktop layout
 [] Last Touches
