@@ -48,7 +48,7 @@ function ProductList() {
 					>
 						<picture>
 							<source
-								media="(min-width: 375px)"
+								media="(min-width: 376px)"
 								srcSet={product.image.desktop}
 								className="product-img"
 							/>
