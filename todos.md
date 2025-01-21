@@ -10,3 +10,4 @@
 [x] Order confirmed logic
 [x] Desktop layout
 [] Last Touches
+[] Write README.md file
