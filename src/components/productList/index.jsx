@@ -47,11 +47,7 @@ function ProductList() {
 						ref={(el) => (listProducts.current[index] = el)}
 					>
 						<picture>
-							<source
-								media="(min-width: 376px)"
-								srcSet={product.image.desktop}
-								className="product-img"
-							/>
+							<source media="(min-width: 376px)" srcSet={product.image.desktop} />
 							<img src={product.image.mobile} className="product-img" />
 						</picture>
 
