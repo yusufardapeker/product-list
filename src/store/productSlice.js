@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 import { data } from "../data";
 
@@ -12,62 +12,73 @@ export const productSlice = createSlice({
 	initialState,
 	reducers: {
 		addProductToCart: (state, action) => {
-			const isItemExist = state.cartProducts.some(
-				(product) => product.name === action.payload.name
-			);
+			const targetProduct = state.products.find((product) => product.id === action.payload.id);
+			targetProduct.quantity = 1;
 
-			if (!isItemExist) {
-				state.cartProducts.push(action.payload);
-			}
+			state.cartProducts.push(targetProduct);
 		},
 
-		removeProductToCart: (state, action) => {
-			state.cartProducts = state.cartProducts.filter((product) => product.name !== action.payload);
+		removeProductFromCart: (state, action) => {
+			const targetProduct = state.products.find((product) => product.id === action.payload.id);
+			if (!targetProduct) return;
 
-			state.products = state.products.map((product) =>
-				product.name === action.payload ? { ...product, quantity: 1 } : product
-			);
+			targetProduct.quantity = 0;
+			state.cartProducts = state.cartProducts.filter((product) => product.id !== targetProduct.id);
+		},
+
+		incrementQuantity: (state, action) => {
+			const listProduct = state.products.find((product) => product.id === action.payload.id);
+			const cartProduct = state.cartProducts.find((product) => product.id === action.payload.id);
+
+			if (!listProduct || !cartProduct) return;
+
+			listProduct.quantity += 1;
+			cartProduct.quantity += 1;
+		},
+
+		decrementQuantity: (state, action) => {
+			const listProduct = state.products.find((product) => product.id === action.payload.id);
+			const cartProduct = state.cartProducts.find((product) => product.id === action.payload.id);
+
+			if (!listProduct || !cartProduct) return;
+
+			if (cartProduct.quantity > 1) {
+				listProduct.quantity -= 1;
+				cartProduct.quantity -= 1;
+			} else {
+				listProduct.quantity = 0;
+				state.cartProducts = state.cartProducts.filter((product) => product.id !== cartProduct.id);
+			}
 		},
 
 		resetProductsData: (state) => {
 			state.cartProducts = [];
 
-			state.products = state.products.map((product) => ({ ...product, quantity: 1 }));
-		},
-
-		decrementQuantity: (state, action) => {
-			state.products = state.products.map((product) =>
-				product.name === action.payload
-					? {
-							...product,
-							quantity: product.quantity === 1 ? 1 : product.quantity - 1,
-					  }
-					: product
-			);
-
-			state.cartProducts = state.cartProducts.map((product) =>
-				product.name === action.payload ? { ...product, quantity: product.quantity - 1 } : product
-			);
-		},
-
-		incrementQuantity: (state, action) => {
-			state.products = state.products.map((product) =>
-				product.name === action.payload ? { ...product, quantity: product.quantity + 1 } : product
-			);
-
-			state.cartProducts = state.cartProducts.map((product) =>
-				product.name === action.payload ? { ...product, quantity: product.quantity + 1 } : product
-			);
+			state.products = state.products.map((product) => ({ ...product, quantity: 0 }));
 		},
 	},
 });
 
 export const {
-	decrementQuantity,
-	incrementQuantity,
 	addProductToCart,
-	removeProductToCart,
+	incrementQuantity,
+	decrementQuantity,
+	removeProductFromCart,
 	resetProductsData,
 } = productSlice.actions;
 
 export default productSlice.reducer;
+
+export const selectFinalPrice = createSelector(
+	[(state) => state.products.cartProducts, (state) => state.register.discountRate],
+
+	(cartProducts, discountRate) => {
+		const finalPrice = cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+		const discountedFinalPrice = finalPrice * (1 - discountRate);
+
+		return {
+			finalPrice,
+			discountedFinalPrice,
+		};
+	},
+);

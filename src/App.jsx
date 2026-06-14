@@ -1,5 +1,5 @@
 import "./styles/reset.css";
-import "./styles/main.scss";
+import "./styles/main.css";
 
 import { TopBar } from "./components/topBar";
 import { ProductList } from "./components/productList";
@@ -13,7 +13,6 @@ function App() {
 
 			<div className="container">
 				<Register />
-
 				<main>
 					<ProductList />
 					<Cart />

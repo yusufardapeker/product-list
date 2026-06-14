@@ -1,89 +1,75 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import removeIcon from "../../../images/icon-remove-item.svg";
-import { removeProductToCart } from "../../../store/productSlice";
-import { Button } from "../../shared/Button";
+import removeIcon from "/images/icon-remove-item.svg";
+import { removeProductFromCart, resetProductsData, selectFinalPrice } from "../../../store/productSlice";
 import { OrderConfirmed } from "./OrderConfirmed";
 import { formatPrice } from "../../../utils/price";
 
 function CartFilled() {
-	const cartProducts = useSelector((store) => store.products.cartProducts);
+	const { cartProducts } = useSelector((state) => state.products);
+	const isRegistered = useSelector((state) => state.register.isRegistered);
 	const dispatch = useDispatch();
+	const [showOrderModal, setShowOrderModal] = useState(false);
 
-	const finalPrice = cartProducts.reduce(
-		(total, product) => total + product.price * product.quantity,
-		0
-	);
+	const { finalPrice, discountedFinalPrice } = useSelector(selectFinalPrice);
 
-	const listProducts = document.querySelectorAll(".list-product");
+	const openOrderModal = () => {
+		setShowOrderModal(true);
 
-	const handleRemoveProductToCart = (productName) => {
-		dispatch(removeProductToCart(productName));
-
-		listProducts.forEach((product) => {
-			const selectedProductName = product.childNodes[3].childNodes[1].textContent;
-
-			if (productName === selectedProductName) {
-				product.classList.remove("active");
-			}
-		});
-	};
-
-	const [showModal, setShowModal] = useState(false);
-
-	const handleClick = () => {
-		setShowModal(true);
 		window.scrollTo({
 			top: 0,
 			behavior: "smooth",
 		});
 	};
 
+	const handleNewOrder = () => {
+		setShowOrderModal(false);
+		dispatch(resetProductsData());
+	};
+
 	return (
 		<>
 			<div className="cart-filled">
-				<div className="products-wrapper">
-					{cartProducts.map((product, index) => (
-						<div className="cart-product" key={index}>
+				<div className="cart-products">
+					{cartProducts.map((product) => (
+						<div className="cart-product" key={product.id}>
 							<div className="product-info">
 								<p className="product-name">{product.name}</p>
 
-								<div className="product-number-values">
-									<span className="quantity">{product.quantity}x</span>
-									<span className="base-price">
-										@&nbsp;
-										{formatPrice(product.price)}
-									</span>
-									<span className="total-price">
-										{formatPrice(product.price * product.quantity)}
-									</span>
+								<div className="product-pricing">
+									<p className="quantity">{product.quantity}x</p>
+									<p className="base-price">{formatPrice(product.price)}</p>
+									<p className="total-product-price">{formatPrice(product.price * product.quantity)}</p>
 								</div>
 							</div>
 
-							<img
-								src={removeIcon}
-								className="remove-icon"
-								alt="remove icon"
-								onClick={() => handleRemoveProductToCart(product.name)}
-							/>
+							<button
+								className="remove-product-button"
+								onClick={() => dispatch(removeProductFromCart(product))}
+								aria-label="Remove product from cart."
+							>
+								<img src={removeIcon} alt="" />
+							</button>
 						</div>
 					))}
 				</div>
 
-				<div className="order-wrapper">
-					<div className="final-price">
-						<p className="text">Order Total</p>
-						<span className="price">{formatPrice(finalPrice)}</span>
+				<div className="cart-order-info">
+					<div className="final-price-wrapper">
+						<p className="title">Order Total</p>
+
+						{isRegistered ? (
+							<div className="discounted-price">
+								<p className="old-price">{formatPrice(finalPrice)}</p>
+								<p className="final-price discounted">{formatPrice(discountedFinalPrice)}</p>
+							</div>
+						) : (
+							<p className="final-price">{formatPrice(finalPrice)}</p>
+						)}
 					</div>
 
 					<div className="delivery-info">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="21"
-							height="20"
-							fill="none"
-							viewBox="0 0 21 20"
-						>
+						<svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" viewBox="0 0 21 20">
 							<path
 								fill="#1EA575"
 								d="M8 18.75H6.125V17.5H8V9.729L5.803 8.41l.644-1.072 2.196 1.318a1.256 1.256 0 0 1 .607 1.072V17.5A1.25 1.25 0 0 1 8 18.75Z"
@@ -94,16 +80,18 @@ function CartFilled() {
 							/>
 						</svg>
 
-						<p className="text">
+						<p className="text-content">
 							This is a <span className="highlighted-text">carbon-neutral</span> delivery
 						</p>
 					</div>
 
-					<Button handleClick={handleClick}>Confirm Order</Button>
+					<button className="order-button" onClick={openOrderModal}>
+						Confirm Order
+					</button>
 				</div>
 			</div>
 
-			{showModal && <OrderConfirmed setShowModal={setShowModal} />}
+			{showOrderModal && <OrderConfirmed handleNewOrder={handleNewOrder} />}
 		</>
 	);
 }

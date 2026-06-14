@@ -1,0 +1,30 @@
+.top-bar {
+	background-color: var(--green);
+	color: var(--rose-100);
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	margin-bottom: 1.5rem;
+	overflow-x: hidden;
+	white-space: nowrap;
+
+	.text-content {
+		display: inline-block;
+		padding-left: 100%;
+		animation: MovingText 7s linear infinite;
+		font-size: 1.2rem;
+
+		@media (width > 376px) {
+			animation-duration: 10s;
+		}
+	}
+}
+
+@keyframes MovingText {
+	0% {
+		translate: 0%;
+	}
+
+	100% {
+		translate: -100%;
+	}
+}

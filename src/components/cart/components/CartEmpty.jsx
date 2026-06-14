@@ -1,11 +1,9 @@
-import React from "react";
-
-import cartEmptyIcon from "../../../images/illustration-empty-cart.svg";
+import cartEmptyImg from "/images/illustration-empty-cart.svg";
 
 function CartEmpty() {
 	return (
 		<div className="cart-empty">
-			<img src={cartEmptyIcon} className="cart-empty-img" />
+			<img src={cartEmptyImg} className="cart-empty-img" alt="" />
 			<p className="cart-empty-message">Your added items will appear here</p>
 		</div>
 	);

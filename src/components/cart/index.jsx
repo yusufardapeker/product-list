@@ -1,5 +1,4 @@
-import React from "react";
-import "./cart.scss";
+import "./cart.css";
 
 import { useSelector } from "react-redux";
 import { CartEmpty } from "./components/CartEmpty";
@@ -12,11 +11,9 @@ function Cart() {
 
 	return (
 		<div className="cart">
-			<h2>{`Your Cart (${totalQuantity})`} </h2>
+			<h2 className="cart-title">{`Your Cart (${totalQuantity})`} </h2>
 
-			<div className="cart-content">
-				{cartProducts.length === 0 ? <CartEmpty /> : <CartFilled />}
-			</div>
+			<div className="cart-content">{cartProducts.length > 0 ? <CartFilled /> : <CartEmpty />}</div>
 		</div>
 	);
 }

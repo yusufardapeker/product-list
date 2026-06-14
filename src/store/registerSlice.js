@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	name: "",
-	surname: "",
-	city: "",
-	country: "",
+	userData: {},
+	isRegistered: false,
+	discountRate: 0.15,
 };
 
 export const registerSlice = createSlice({
@@ -12,18 +11,15 @@ export const registerSlice = createSlice({
 	initialState,
 	reducers: {
 		setUserData: (state, action) => {
-			const { name, value } = action.payload;
-			state[name] = value;
+			state.userData = action.payload;
 		},
-		resetUserData: (state) => {
-			state.name = "";
-			state.surname = "";
-			state.city = "";
-			state.country = "";
+
+		setRegisterSuccess: (state) => {
+			state.isRegistered = true;
 		},
 	},
 });
 
-export const { setUserData, resetUserData } = registerSlice.actions;
+export const { setUserData, setRegisterSuccess } = registerSlice.actions;
 
 export default registerSlice.reducer;
