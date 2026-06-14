@@ -1,41 +1,43 @@
 # Frontend Mentor - Product list with cart solution
 
-### Links
+### 🔗 Links
 
-This is a solution to the [Product list with cart challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d).
+👉 **[Go Live Site](https://product-list5039.netlify.app/)** <br>
+👉 **[Visit Challenge](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d)**
 
-Live Site URL: [The Website](https://product-list5039.netlify.app/)
+## 🛠️ Built With
 
-### Built with
-
-- React
-- SASS
-- Redux Toolkit
-- Mobile-first workflow
+- **React**
+- **Redux Toolkit**
+- **Mobile-first workflow**
 
 ### About The Project
 
-I don't have the figma file so it is not pixel perfect. I have tried to make similar as same as possible. Also I added registration logic to this challange. The website is responsive only 1440px and 375px screen sizes. I'll be glad if you give me suggestion about mistakes, lackings and best practices and how can I fix them.
+I don't have the actual design file so the layout is not pixel-perfect. Implementation focuses on:
 
-### Installation
+- Clean and modern CSS
+- Good accessibility practices
+- Keyboard-friendly interactions
+
+## 🚀 Installation
 
 1. Clone the repository:
 
-```
-git clone <repository-url>
+```sh
+git clone https://github.com/yusufardapeker/product-list.git
 cd product-list
 ```
 
 2. Install dependencies:
 
-```
+```sh
 npm install
 ```
 
-3. Start development server
+3. Start the development server:
 
-```
+```sh
 npm run dev
 ```
 
-4. Go to http://localhost:5173
+4. Open your browser and go to http://localhost:5173
